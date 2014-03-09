@@ -1,0 +1,86 @@
+/*
+
+978 Grid System CSS Framework
+http://978.gs
+
+Copyright (c) 2011 Brothers Roloff
+http://www.brothersroloff.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/
+
+// default variables
+$layoutwidth  : 978   !default;
+$columns      : 12    !default;
+$gridwidth    : 54    !default;
+$gutter       : 30    !default;
+$printlayout  : false !default;
+
+@if       $layoutwidth == 1378  { $columns : 16; $gridwidth : 58; $gutter: 30; }
+@else if  $layoutwidth == 1218  { $columns : 16; $gridwidth : 48; $gutter: 30; }
+@else if  $layoutwidth == 748   { $columns : 12; $gridwidth : 44; $gutter: 20; }
+@else if  $layoutwidth == 300   { $columns :  8; $gridwidth : 27; $gutter: 12; }
+
+@function calcGrid($n) {
+  @return ( $gridwidth * $n ) + ( $gutter * ($n - 1) ) + px;
+}
+
+// grid mixin
+@mixin grid($n,$first:false) {
+  float: left;
+  width: calcGrid($n);
+  @if $first == true {
+    margin-left: 0;
+  } @else {
+    margin-left: $gutter+px;
+  }
+}
+
+// print layout styles
+@mixin printColums {
+  .col {
+    float: left;margin-left: $gutter+px;
+    &:first-child { margin-left: 0; }
+  }
+  @while $columns > 0 {
+    .col#{$columns} { @extend .col }
+    .col#{$columns} { width: calcGrid($columns); }
+    $columns: $columns - 1;
+  }
+}
+
+// base mixins
+@mixin layout {
+  width: $layoutwidth+px; margin: 0px auto;
+}
+
+@mixin row {
+  height: 1%;
+}
+
+@mixin row-end {
+  clear: both; font: 1px/1px sans-serif; height: 1px; overflow: hidden;
+}
+
+// print the css
+.layout-#{$layoutwidth} { @include layout; }
+.row { @include row; }
+.row-end { @include row-end; }
+@if $printlayout == true { @include printColums; }

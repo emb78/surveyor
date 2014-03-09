@@ -1,3 +1,57 @@
 header {
   @include h1;
+  text-align: center;
+  color: white;
+  padding: 50px 0;
+}
+
+.survey {
+  background-color: white;
+  padding: 50px;
+
+  .question {
+    color: $darkBlue;
+
+    .text {
+      @include h3;
+      text-align: center;
+    }
+
+    .choices {
+      padding: 20px 100px;
+      text-align: center;
+
+      .choice {
+        display: inline-block;
+        vertical-align: top;
+        width: 140px;
+        height: 140px;
+        background-color: $green;
+        cursor: pointer;
+
+        .background {
+          width: 120px;
+          height: 120px;
+          padding: 10px;
+          display: table;
+          .text {
+            @include h5;
+            display: table-cell;
+            vertical-align: middle;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right: 50px;
+        }
+
+        &:hover {
+          background-color: $darkGreen;
+          color: white;
+        }
+
+      }
+    }
+
+  }
 }

@@ -20,3 +20,13 @@
   @include bold-font;
   font-size: 40px;
 }
+
+@mixin h3 {
+  @include bold-font;
+  font-size: 24px;
+}
+
+@mixin h5 {
+  @include regular-font;
+  font-size: 18px;
+}

@@ -5,7 +5,7 @@ survey = Survey.find_or_create_by_title("Preferences")
 
 questions = [
     {text: "What's your favorite color?", choices: ["Blue", "Green", "Pink"]},
-    {text: "The best way I can learn is if I", choices: ["Read about it", "See an example of it", "Have a conversation about it"]},
+    {text: "The best way I learn something new is if I", choices: ["Read about it", "See an example of it", "Have a conversation about it"]},
 ]
 
 questions.each_with_index do |question_text, index|
