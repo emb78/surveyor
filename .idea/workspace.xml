@@ -21,7 +21,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.5012225">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/surveys/index.html.erb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="2" column="22" selection-start="52" selection-end="52" vertical-scroll-proportion="0.054145515">
@@ -124,10 +124,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="survey.css.scss" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="survey.css.scss" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/surveys/survey.css.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="7" selection-start="91" selection-end="91" vertical-scroll-proportion="0.18855219">
+                <state line="33" column="24" selection-start="560" selection-end="560" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="17" column="12" selection-start="487" selection-end="487" vertical-scroll-proportion="0.48658317">
                   <folding />
                 </state>
               </provider>
@@ -181,7 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/reset.css" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/colors.css.scss" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/site.css.scss" />
@@ -197,6 +205,7 @@
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/surveys/survey.css.scss" />
         <option value="$PROJECT_DIR$/app/views/surveys/index.html.erb" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -249,20 +258,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="surveyor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surveyor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surveyor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -593,13 +588,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/reset.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="30" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/global/colors.css.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="6" selection-start="43" selection-end="49" vertical-scroll-proportion="0.0">
@@ -691,16 +679,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/surveys/survey.css.scss">
+    <entry file="file://$PROJECT_DIR$/app/views/surveys/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="7" selection-start="91" selection-end="91" vertical-scroll-proportion="0.18855219">
+        <state line="2" column="22" selection-start="52" selection-end="52" vertical-scroll-proportion="0.054145515">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/surveys/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/surveys/survey.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="22" selection-start="52" selection-end="52" vertical-scroll-proportion="0.054145515">
+        <state line="33" column="24" selection-start="560" selection-end="560" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="12" selection-start="487" selection-end="487" vertical-scroll-proportion="0.48658317">
           <folding />
         </state>
       </provider>
