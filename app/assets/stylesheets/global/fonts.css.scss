@@ -1,0 +1,22 @@
+@mixin default-font {
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 105%;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+@mixin regular-font {
+  @include default-font;
+  font-weight: normal;
+}
+
+@mixin bold-font {
+  @include default-font;
+  font-weight: bold;
+}
+
+@mixin h1 {
+  @include bold-font;
+  font-size: 40px;
+}

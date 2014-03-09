@@ -1,0 +1,12 @@
+<header><%= @survey.title %></header>
+
+<article class="survey">
+  <section class="questions">
+    <% @survey.questions.each do |question| %>
+        <div class="question"><%= question.text %></div>
+        <% question.choices.each do |choice| %>
+            <div class="choice"><%= choice.text %></div>
+        <% end %>
+    <% end %>
+  </section>
+</article>

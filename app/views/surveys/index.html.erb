@@ -1,0 +1,9 @@
+<header>My Surveys!</header>
+
+<article class="surveys">
+  <section class="titles">
+    <% @surveys.all.each do |survey| %>
+        <%= link_to survey.title, survey %>
+    <% end %>
+  </section>
+</article>

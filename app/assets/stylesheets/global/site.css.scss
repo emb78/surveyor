@@ -1,0 +1,8 @@
+a {
+  @include regular-font;
+  text-decoration: none;
+  color: $green;
+  &:hover {
+    color: $darkGreen;
+  }
+}

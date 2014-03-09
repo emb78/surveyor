@@ -1,0 +1,18 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  username: teamworks
+  password:
+
+development:
+  database: surveyor_development
+  <<: *defaults
+
+staging:
+  database: surveyor_staging
+  <<: *defaults
+
+production:
+  database: surveyor_production
+  <<: *defaults
