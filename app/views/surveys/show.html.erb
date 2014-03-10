@@ -6,7 +6,7 @@
       <div class="text"><%= question.text %></div>
       <div class="choices">
         <% question.choices.each do |choice| %>
-          <div class="choice">
+          <div class="choice" data-id="<%= choice.id %>">
               <div class="background">
                 <div class="text"><%= choice.text %></div>
               </div>
@@ -15,4 +15,22 @@
       </div>
     </section>
   <% end %>
+
+  <section class="navigation">
+    <%= link_to 'See results', survey_results_path(survey_id: @survey.id) %>
+  </section>
 </article>
+
+<script>
+  $(document).ready(function(){
+      $(".choices .choice").click(function(){
+
+          $(this).siblings(".selected").removeClass("selected");
+          $(this).addClass("selected");
+          var chosenId = $(this).data('id');
+          $.post("<%= users_answers_path %>", { choice_id: chosenId });
+      });
+
+  });
+
+</script>

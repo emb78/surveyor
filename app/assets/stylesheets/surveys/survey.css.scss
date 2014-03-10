@@ -3,6 +3,12 @@ header {
   text-align: center;
   color: white;
   padding: 50px 0;
+
+  .subheader {
+    @include h3;
+    padding-top: 10px;
+  }
+
 }
 
 .survey {
@@ -24,20 +30,31 @@ header {
       .choice {
         display: inline-block;
         vertical-align: top;
-        width: 140px;
-        height: 140px;
-        background-color: $green;
-        cursor: pointer;
 
         .background {
+          background-color: $green;
           width: 120px;
           height: 120px;
           padding: 10px;
           display: table;
+          cursor: pointer;
+
           .text {
             @include h5;
             display: table-cell;
             vertical-align: middle;
+          }
+
+          &:hover{
+            background-color: $darkGreen;
+            color: white;
+          }
+        }
+
+        &.selected {
+          .background {
+            background-color: $darkGreen;
+            color: white;
           }
         }
 
@@ -45,13 +62,27 @@ header {
           margin-right: 50px;
         }
 
-        &:hover {
-          background-color: $darkGreen;
-          color: white;
+        &.result {
+
+          .background {
+            cursor: auto;
+            .amount {
+              @include h3;
+              padding-top: 10px;
+            }
+            &:hover {
+              background-color: $green;
+              color: $darkBlue;
+            }
+          }
         }
 
       }
     }
-
   }
+}
+
+.navigation {
+  text-align: right;
+  margin: 20px 185px 0 0;
 }

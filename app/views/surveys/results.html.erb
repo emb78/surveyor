@@ -1,0 +1,28 @@
+<header>
+  The results are in!
+  <div class="subheader"><%= @survey.title %></div>
+</header>
+
+
+<article class="survey">
+  <% @survey.questions.each do |question| %>
+      <section class="question">
+        <div class="text"><%= question.text %></div>
+        <div class="choices">
+          <% question.choices.each do |choice| %>
+
+              <div class="choice result" data-id="<%= choice.id %>">
+                <div class="background">
+                  <div class="text">
+                    <%= choice.text %>
+                    <div class="amount">
+                      <%= UsersAnswer.where(question_id: question.id, choice_id: choice.id).count %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </section>
+  <% end %>
+</article>

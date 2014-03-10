@@ -9,8 +9,8 @@ questions = [
 ]
 
 questions.each_with_index do |question_text, index|
-  question = Question.find_or_create_by_survey_id_and_order_and_text(survey.id, index, question_text[:text])
+  question = Question.find_or_create_by_survey_id_and_order_and_text(survey.id, index+1, question_text[:text])
   question_text[:choices].each_with_index do |choice_text, choice_index|
-    Choice.find_or_create_by_question_id_and_order_and_text(question.id, choice_index, choice_text)
+    Choice.find_or_create_by_question_id_and_order_and_text(question.id, choice_index+1, choice_text)
   end
 end
