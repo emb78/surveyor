@@ -1,25 +1,17 @@
 <header><%= @survey.title %></header>
 
 <article class="survey">
-  <% @survey.questions.each do |question| %>
-    <section class="question">
-      <div class="text"><%= question.text %></div>
-      <div class="choices">
-        <% question.choices.each do |choice| %>
-          <div class="choice" data-id="<%= choice.id %>">
-              <div class="background">
-                <div class="text"><%= choice.text %></div>
-              </div>
-          </div>
-        <% end %>
-      </div>
-    </section>
-  <% end %>
+  <div class="survey-background">
+    <div class="exercise-container">
+      <div class="page-container"></div>
+      <section class="navigation">
+        <%= link_to 'See results', survey_results_path(survey_id: @survey.id) %>
+      </section>
+    </div>
+  </div>
 
-  <section class="navigation">
-    <%= link_to 'See results', survey_results_path(survey_id: @survey.id) %>
-  </section>
 </article>
+
 
 <script>
   $(document).ready(function(){
@@ -32,5 +24,46 @@
       });
 
   });
+
+</script>
+
+
+
+<div class="templates">
+  <div class="survey-page">
+        <section class="question">
+          <div class="text">{{= text }}</div>
+          <div class="choices">
+            {{ $(choices).each(function(i, choice) { }}
+                <div class="choice" data-id="{{= choice.id }}">
+                  <div class="background">
+                    <div class="text">{{= choice.text }}</div>
+                  </div>
+                </div>
+            {{ }) }}
+          </div>
+        </section>
+  </div>
+</div>
+
+<script>
+    function DisplaySurvey() {
+        this.init()
+    }
+
+    DisplaySurvey.prototype = {
+        init: function () {
+            var pages = [];
+            <% @survey_questions_and_choices.each_with_index do |question, i| %>
+                pages.push(new SurveyPage(<%= question.to_json.html_safe %>, <%= i + 1 %>, <%= @survey_questions_and_choices.count %>, '<%= users_answers_url %>'));
+            <% end %>
+            new Survey(pages, $('.page-container'), $('.navigation a'), '/results');
+        }
+    };
+
+    $(function () {
+        new DisplaySurvey();
+    });
+
 
 </script>

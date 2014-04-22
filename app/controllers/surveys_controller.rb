@@ -5,9 +5,11 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find params[:id]
+    @survey_questions_and_choices = @survey.questions_and_answers
   end
 
   def results
     @survey = Survey.find params[:survey_id]
   end
+
 end

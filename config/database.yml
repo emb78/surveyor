@@ -16,3 +16,7 @@ staging:
 production:
   database: surveyor_production
   <<: *defaults
+
+test:
+  database: surveyor_test
+  <<: *defaults
