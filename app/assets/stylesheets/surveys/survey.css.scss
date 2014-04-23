@@ -13,7 +13,7 @@ header {
 
 .survey {
   background-color: white;
-  padding: 50px;
+  padding: 50px 50px 100px 50px;
 
   .question {
     color: $darkBlue;
@@ -82,6 +82,25 @@ header {
 }
 
 .navigation {
-  text-align: right;
-  margin: 20px 185px 0 0;
+  position: relative;
+
+  .next-button {
+    @include regular-font;
+    background-color: $darkBlue;
+    color: white;
+    padding: 20px;
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+
+    &.active {
+      background-color: $green;
+      cursor: pointer;
+    }
+
+    &.inactive {
+      background-color: $darkBlue;
+    }
+  }
+
 }

@@ -2,7 +2,7 @@
 
 <article class="survey">
   <section class="titles">
-    <% @surveys.all.each do |survey| %>
+    <% @surveys.load.each do |survey| %>
         <%= link_to survey.title, survey %>
     <% end %>
   </section>

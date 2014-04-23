@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'active_record/fixtures'
 
-survey = Survey.find_or_create_by_title("Preferences")
+survey = Survey.find_or_create_by(title: "Preferences")
 
 questions = [
     {text: "What's your favorite color?", choices: ["Blue", "Green", "Pink"]},
@@ -9,8 +9,8 @@ questions = [
 ]
 
 questions.each_with_index do |question_text, index|
-  question = Question.find_or_create_by_survey_id_and_order_and_text(survey.id, index+1, question_text[:text])
+  question = Question.find_or_create_by(survey_id: survey.id, order: index+1, text: question_text[:text])
   question_text[:choices].each_with_index do |choice_text, choice_index|
-    Choice.find_or_create_by_question_id_and_order_and_text(question.id, choice_index+1, choice_text)
+    Choice.find_or_create_by(question_id: question.id, order: choice_index+1, text: choice_text)
   end
 end

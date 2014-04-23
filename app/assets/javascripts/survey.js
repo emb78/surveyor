@@ -5,7 +5,9 @@ function Survey(pages, pageContainer, nextButton, reportUrl, finishSurveyUrl) {
     this.pageContainers = [];
 
     this.nextButton = nextButton;
-    this.nextButtonLabel = this.nextButton.find('label');
+
+    this.reportUrl = reportUrl;
+    this.finishSurveyUrl = finishSurveyUrl;
 
     this.init();
 }
@@ -25,9 +27,7 @@ Survey.prototype = {
         this.instantiatePagesToContainers();
 
         this.addNavigationHandlers();
-        this.nextButtonHoverEvents();
-
-        this.enablePrevious();
+//        this.enablePrevious();
 
         this.switchToPage(this.currentPageIndex, true);
         if (scrollToTopOfPage) {
@@ -67,7 +67,6 @@ Survey.prototype = {
             var page = this.pages[i];
             page.survey = this;
 
-
             var pageContainerDiv = $('<div></div>')
             pageContainerDiv.addClass(page.containerClass());
             pageContainerDiv.append(page.elements());
@@ -89,22 +88,17 @@ Survey.prototype = {
         return this.pageContainers[this.currentPageIndex];
     },
 
-    nextButtonHoverEvents: function () {
-        $('body').on('mouseenter', '.nextButton.active', function () {
-            $(this).find('label').hide();
-        });
-        $('body').on('mouseleave', '.nextButton.active', function () {
-            $(this).find('label').show();
-        });
+    isLastPage: function (page) {
+        return this.pages.indexOf(page) == (this.pages.length - 1);
     },
 
     addNavigationHandlers: function () {
-        $('body').on('click', '.nextButton.active', $.proxy(this.nextStep, this));
+        $('body').on('click', '.next-button.active', $.proxy(this.nextStep, this));
         $('body').on('click', '.back-button.active', $.proxy(this.previousStep, this));
     },
 
     removeNavigationEvents: function () {
-        $('body').off('click', '.nextButton.active');
+        $('body').off('click', '.next-button.active');
         $('body').off('click', '.back-button.active');
     },
 
@@ -128,19 +122,27 @@ Survey.prototype = {
         }, 650);
     },
 
-    goToPage: function (index, next) {
-        $(this).trigger('surveyPageVisit', {page: index});
+    goToReport: function () {
+        window.location = this.reportUrl;
+    },
 
-        this.currentPage().leavePage(this.shouldLeaveSurvey(index), next);
+    goToPage: function (index) {
 
-        if (!this.isValidPageIndex(index)) {
+        this.currentPage().nextClicked();
+
+        if (this.shouldLeaveSurvey(index)) {
+            this.goToReport();
+        } else if (index < 0) {
             return;
+        } else {
+            this.switchToPage(index);
         }
 
-        this.switchToPage(index);
     },
 
     switchToPage: function (index, skipAnimations) {
+//        if (this.shouldLeaveSurvey) return;
+
         skipAnimations = skipAnimations || false;
 
         window.location.hash = index;
@@ -152,7 +154,7 @@ Survey.prototype = {
         if (skipAnimations) {
             previousContainer.hide();
             this.currentPageContainer().show();
-            this.presentBackButton(skipAnimations);
+//            this.presentBackButton(skipAnimations);
         } else {
             this.scrollToTopOfPageContainer();
             var height = this.currentPageContainer().outerHeight(true);
@@ -160,7 +162,7 @@ Survey.prototype = {
 
             previousContainer.fadeOut(300).promise().done(this.proxy(function () {
                 this.currentPageContainer().fadeIn(300);
-                this.presentBackButton(skipAnimations);
+//                this.presentBackButton(skipAnimations);
             }));
         }
     },
@@ -170,13 +172,13 @@ Survey.prototype = {
             return;
         }
 
-        this.goToPage(this.currentPageIndex + 1, true);
+        this.goToPage(this.currentPageIndex + 1);
 
         return false;
     },
 
     previousStep: function () {
-        this.goToPage(this.currentPageIndex - 1, false);
+        this.goToPage(this.currentPageIndex - 1);
 
         return false;
     },
@@ -214,7 +216,7 @@ Survey.prototype = {
     },
 
     setNextLabelHtml: function (html) {
-        this.nextButtonLabel.html(html);
+        this.nextButton.html(html);
     },
 
     proxy: function (proxied) {

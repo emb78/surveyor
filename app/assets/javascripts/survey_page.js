@@ -10,24 +10,24 @@ SurveyPage.prototype = {
     afterInit: function (elements) {
         this.elements = elements;
 
-        this.elements.find('.answer-option').click($.proxy(function (event) {
-            this.elements.find('.answer-option').removeClass('selected');
+        this.elements.find('.choice').click($.proxy(function (event) {
+            this.elements.find('.choice').removeClass('selected');
             var clickedAnswer = $(event.currentTarget);
             clickedAnswer.addClass('selected');
-            var answerId = clickedAnswer.data('answer-id');
-            this.setAnswer(answerId);
+            var choiceId = clickedAnswer.data('choice-id');
+            this.setChoice(choiceId);
             this.survey.enableNextButton();
         }, this));
 
     },
 
 
-    setAnswer: function (answerId) {
-        this.question.response.answer_id = answerId;
+    setChoice: function (choiceId) {
+        this.question.response.choice_id = choiceId;
     },
 
     shouldEnableNextButton: function () {
-        if (this.question.response.answer_id) {
+        if (this.question.response.choice_id) {
             this.survey.enableNextButton();
         }
         else {
@@ -44,7 +44,7 @@ SurveyPage.prototype = {
     },
 
     nextClicked: function () {
-        this.survey.post(this.usersChoiceUrl, { question_id: this.question.id, answer_id: this.question.response.answer_id });
+        $.post(this.usersChoiceUrl, { question_id: this.question.id, choice_id: this.question.response.choice_id });
     },
 
     prepForDisplay: function () {

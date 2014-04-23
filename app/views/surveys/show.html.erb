@@ -5,39 +5,24 @@
     <div class="exercise-container">
       <div class="page-container"></div>
       <section class="navigation">
-        <%= link_to 'See results', survey_results_path(survey_id: @survey.id) %>
+        <div class="next-button">
+          See results
+        </div>
       </section>
     </div>
   </div>
 
 </article>
 
-
-<script>
-  $(document).ready(function(){
-      $(".choices .choice").click(function(){
-
-          $(this).siblings(".selected").removeClass("selected");
-          $(this).addClass("selected");
-          var chosenId = $(this).data('id');
-          $.post("<%= users_answers_path %>", { choice_id: chosenId });
-      });
-
-  });
-
-</script>
-
-
-
 <div class="templates">
   <div class="survey-page">
         <section class="question">
-          <div class="text">{{= text }}</div>
+          <div class="text">{{- text }}</div>
           <div class="choices">
             {{ $(choices).each(function(i, choice) { }}
-                <div class="choice" data-id="{{= choice.id }}">
+                <div class="choice" data-choice-id="{{= choice.id }}">
                   <div class="background">
-                    <div class="text">{{= choice.text }}</div>
+                    <div class="text">{{- choice.text }}</div>
                   </div>
                 </div>
             {{ }) }}
@@ -57,7 +42,7 @@
             <% @survey_questions_and_choices.each_with_index do |question, i| %>
                 pages.push(new SurveyPage(<%= question.to_json.html_safe %>, <%= i + 1 %>, <%= @survey_questions_and_choices.count %>, '<%= users_answers_url %>'));
             <% end %>
-            new Survey(pages, $('.page-container'), $('.navigation a'), '/results');
+            new Survey(pages, $('.page-container'), $('.navigation .next-button'), '<%= survey_results_path(survey_id: @survey.id) %>');
         }
     };
 

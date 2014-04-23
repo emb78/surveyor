@@ -1,7 +1,7 @@
 class Choice < ActiveRecord::Base
   belongs_to :question
 
-  default_scope order(:order)
+  default_scope { order(:order) }
 
   def api_object
     {
