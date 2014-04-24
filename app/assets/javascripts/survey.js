@@ -141,8 +141,6 @@ Survey.prototype = {
     },
 
     switchToPage: function (index, skipAnimations) {
-//        if (this.shouldLeaveSurvey) return;
-
         skipAnimations = skipAnimations || false;
 
         window.location.hash = index;
@@ -154,7 +152,7 @@ Survey.prototype = {
         if (skipAnimations) {
             previousContainer.hide();
             this.currentPageContainer().show();
-//            this.presentBackButton(skipAnimations);
+//            this.presentBackButton();
         } else {
             this.scrollToTopOfPageContainer();
             var height = this.currentPageContainer().outerHeight(true);
@@ -162,7 +160,7 @@ Survey.prototype = {
 
             previousContainer.fadeOut(300).promise().done(this.proxy(function () {
                 this.currentPageContainer().fadeIn(300);
-//                this.presentBackButton(skipAnimations);
+//                this.presentBackButton();
             }));
         }
     },
@@ -199,19 +197,11 @@ Survey.prototype = {
         $('.back-button').removeClass('active').addClass('inactive');
     },
 
-    presentBackButton: function (skipAnimations) {
-        if (skipAnimations) {
-            if (this.currentPageIndex != 0) {
-                $('.back-button').show();
-            } else {
-                $('.back-button').hide();
-            }
+    presentBackButton: function () {
+        if (this.currentPageIndex != 0) {
+            $('.back-button').show();
         } else {
-            if (this.currentPageIndex != 0) {
-                $('.back-button').fadeIn();
-            } else {
-                $('.back-button').fadeOut();
-            }
+            $('.back-button').hide();
         }
     },
 
