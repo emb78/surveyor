@@ -1,9 +1,8 @@
-function SurveyPage(question, num, total, usersChoiceUrl, reportUrl) {
+function SurveyPage(question, num, total, usersChoiceUrl) {
     this.num = num;
     this.total = total;
     this.question = question;
     this.usersChoiceUrl = usersChoiceUrl;
-    this.reportUrl = reportUrl;
 }
 
 SurveyPage.prototype = {
@@ -43,8 +42,8 @@ SurveyPage.prototype = {
         return true;
     },
 
-    nextClicked: function () {
-        $.post(this.usersChoiceUrl, { question_id: this.question.id, choice_id: this.question.response.choice_id });
+    nextClicked: function (success) {
+        $.post(this.usersChoiceUrl, { question_id: this.question.id, choice_id: this.question.response.choice_id }, success);
     },
 
     prepForDisplay: function () {

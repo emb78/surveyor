@@ -1,4 +1,4 @@
-function Survey(pages, pageContainer, nextButton, reportUrl, finishSurveyUrl) {
+function Survey(pages, pageContainer, nextButton, reportUrl) {
     this.pages = pages;
     this.pageContainer = pageContainer;
 
@@ -7,7 +7,6 @@ function Survey(pages, pageContainer, nextButton, reportUrl, finishSurveyUrl) {
     this.nextButton = nextButton;
 
     this.reportUrl = reportUrl;
-    this.finishSurveyUrl = finishSurveyUrl;
 
     this.init();
 }
@@ -127,15 +126,13 @@ Survey.prototype = {
     },
 
     goToPage: function (index) {
-
-        this.currentPage().nextClicked();
-
+        debugger;
         if (this.shouldLeaveSurvey(index)) {
-            this.goToReport();
+            this.currentPage().nextClicked(this.proxy(function (){this.goToReport()} ));
         } else if (index < 0) {
             return;
         } else {
-            this.switchToPage(index);
+            this.currentPage().nextClicked(this.switchToPage(index));
         }
 
     },
