@@ -16,6 +16,7 @@ end
 
 group :test do
   gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'shoulda'
 end
 
 group :test, :development do

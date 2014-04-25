@@ -1,6 +1,7 @@
 class UsersAnswer < ActiveRecord::Base
   belongs_to :question
   belongs_to :choice
+  validates_presence_of :question, :choice
 
   def api_object
     {
