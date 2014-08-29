@@ -13,19 +13,11 @@ Capybara.server do |app, port|
   Rack::Handler::Thin.run(app, :Port => port)
 end
 
-# Requires supporting ruby files with custom matchers and macros, etc,
-# in spec/support/ and its subdirectories.
-#Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
 
 RSpec.configure do |config|
-  config.before(:suite) do
-    require "#{Rails.root}/db/seeds.rb"
-  end
+
   config.order = 'random'
   config.mock_with :rspec
   config.use_transactional_fixtures = true
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
 end

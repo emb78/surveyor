@@ -1,11 +1,17 @@
 == README
 
 === Installing Locally
-Clone git project.
-Install postgres if you don't have it
-Install rvm if you don't have it
-Install ruby-2.0.0-p353 if you don't have it
-Create gemset surveyor
-Call 'bundle' in the project directory
-Run 'rake db:create db:migrate db:seed'
-Run 'rails s' and view in browser at 'localhost:3000'
+* Clone git project.
+* Install postgres if you don't have it
+* Install rvm if you don't have it
+* Install ruby-2.0.0-p353 if you don't have it
+* Create gemset surveyor
+* Call 'bundle' in the project directory
+* Run 'rake db:setup'
+* Run 'rails s' and view in browser at 'localhost:3000'
+
+=== Running the tests
+* Install phantomjs if you don't have it
+* Run 'rake db:create RAILS_ENV=test'
+* Run 'rake db:migrate RAILS_ENV=test'
+* Run 'rspec'
