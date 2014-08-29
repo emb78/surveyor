@@ -4,10 +4,13 @@
   <%= link_to "Create New Survey", new_survey_path %>
 </article>
 
-<article class="survey">
+<article class="surveys">
   <section class="titles">
     <% @surveys.load.each do |survey| %>
+      <div class="survey-title">
         <%= link_to survey.title, survey %>
+      </div>
+
     <% end %>
   </section>
 </article>

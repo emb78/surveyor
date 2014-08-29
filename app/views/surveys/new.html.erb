@@ -6,8 +6,20 @@
 
 <article class="survey">
   <section class="new_survey_form">
-    <form>
+    <%= form_for @survey do |f| %>
+      <% if @survey.errors.any? %>
+        <div class="errors">
+         <ul>
+            <% @survey.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-    </form>
+      <%= f.label :title, "Survey title:" %>
+      <%= f.text_field :title %>
+      <%= f.submit "Create", class: "button" %>
+    <% end %>
   </section>
 </article>

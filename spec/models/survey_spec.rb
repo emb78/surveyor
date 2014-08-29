@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Survey do
 
+  it "should require a title" do
+    Survey.new(title: "").should_not be_valid
+  end
+
   describe 'questions_and_answers' do
     let(:survey){ Survey.last }
     let(:questions_and_answers){ survey.questions_and_answers }
