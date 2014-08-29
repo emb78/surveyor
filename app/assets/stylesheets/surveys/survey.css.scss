@@ -11,9 +11,16 @@ header {
 
 }
 
+.controls {
+  background-color: $lightGray;
+  text-align: right;
+  padding: 20px 50px 20px 50px;
+}
+
+
 .survey {
   background-color: white;
-  padding: 50px 50px 100px 50px;
+  padding: 20px 50px 100px 50px;
 
   .question {
     color: $darkBlue;

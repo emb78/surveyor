@@ -1,5 +1,9 @@
 <header>My Surveys!</header>
 
+<article class="controls">
+  <%= link_to "Create New Survey", new_survey_path %>
+</article>
+
 <article class="survey">
   <section class="titles">
     <% @surveys.load.each do |survey| %>
