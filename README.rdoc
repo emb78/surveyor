@@ -1,5 +1,11 @@
 == README
 
-ruby-2.0.0-p353
-postgresql
-
+=== Installing Locally
+Clone git project.
+Install postgres if you don't have it
+Install rvm if you don't have it
+Install ruby-2.0.0-p353 if you don't have it
+Create gemset surveyor
+Call 'bundle' in the project directory
+Run 'rake db:create db:migrate db:seed'
+Run 'rails s' and view in browser at 'localhost:3000'
