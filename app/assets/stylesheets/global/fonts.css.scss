@@ -28,5 +28,9 @@
 
 @mixin h5 {
   @include regular-font;
-  font-size: 18px;
+}
+
+@mixin h6 {
+  @include regular-font;
+  font-size: 15px;
 }

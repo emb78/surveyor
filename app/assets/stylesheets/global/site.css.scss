@@ -20,38 +20,3 @@ a {
     color: $darkGreen;
   }
 }
-
-form {
-
-  input[type="text"] {
-    border: 1px solid black;
-  }
-
-  input.button {
-    border: none;
-    background-color: $green;
-    color: white;
-    display: block;
-    height: 30px;
-    padding: 0 10px;
-    @include h5;
-
-    &:hover {
-      background-color: $darkGreen;
-    }
-  }
-
-  .errors {
-    color: $errorColor;
-    padding: 5px 0;
-  }
-
-  .field_with_errors {
-    display: inline-block;
-
-    &.input[type="text"] {
-      border-color: $errorColor;
-    }
-  }
-
-}
