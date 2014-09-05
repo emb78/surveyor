@@ -8,6 +8,7 @@ gem 'sass-rails', '4.0.1'
 gem 'uglifier'
 gem 'jquery-rails', '3.1.0'
 gem 'turbolinks'
+gem 'nested_form'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

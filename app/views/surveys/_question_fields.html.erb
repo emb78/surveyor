@@ -1,0 +1,14 @@
+
+<div class="question-form">
+
+  <%= f.label :text, "Question:" %>
+  <%= f.text_field :text %>
+
+  <%= f.fields_for :choices do |choices_form| %>
+    <div class="choice">
+      <%= choices_form.label :text, "Choice:" %>
+      <%= choices_form.text_field :text %>
+    </div>
+  <% end %>
+
+</div>
