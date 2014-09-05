@@ -7,11 +7,11 @@ describe Survey do
   end
 
   describe 'questions_and_answers' do
-    let(:survey){ Survey.last }
+    let(:survey){ create :survey_with_question }
     let(:questions_and_answers){ survey.questions_and_answers }
 
     it 'has the correct number of questions' do
-      questions_and_answers.count.should eq(2)
+      questions_and_answers.count.should eq(1)
     end
 
     it 'provides the choices' do

@@ -10,10 +10,12 @@ class SurveysController < ApplicationController
 
   def new
     @survey = Survey.new
+    question = @survey.questions.new
+    3.times { question.choices.new }
   end
 
   def create
-    @survey = Survey.create(title: params[:survey][:title])
+    @survey = Survey.new(survey_params)
     if @survey.save
       redirect_to surveys_path
     else
@@ -24,5 +26,12 @@ class SurveysController < ApplicationController
   def results
     @survey = Survey.find params[:survey_id]
   end
+
+  private
+
+  def survey_params
+    params.require(:survey).permit(:title, questions_attributes: [:text, choices_attributes: [:text]])
+  end
+
 
 end

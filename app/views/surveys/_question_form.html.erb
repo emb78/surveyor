@@ -1,0 +1,21 @@
+<div class="question-form">
+  <%= question_form.label :question_id, 'Question:' %>
+  <%= question_form.text_field :text %>
+  <% unless question_form.object.new_record? %>
+    <%= question_form.label :_delete, 'Remove:' %>
+    <%= question_form.check_box :_delete %>
+  <% end %>
+
+  <div class="choices-form">
+    <%= question_form.fields_for :choices do |choices_form| %>
+      <div class="choice">
+        <%= choices_form.label :choice_id, 'Choice:' %>
+        <%= choices_form.text_field :text %>
+        <% unless choices_form.object.new_record? %>
+          <%= choices_form.label :_delete, 'Remove:' %>
+          <%= choices_form.check_box :_delete %>
+        <% end %>
+      </div>
+  <% end %>
+  </div>
+</div>

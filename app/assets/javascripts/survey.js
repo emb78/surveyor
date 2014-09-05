@@ -1,13 +1,9 @@
 function Survey(pages, pageContainer, nextButton, reportUrl) {
     this.pages = pages;
     this.pageContainer = pageContainer;
-
     this.pageContainers = [];
-
     this.nextButton = nextButton;
-
     this.reportUrl = reportUrl;
-
     this.init();
 }
 
@@ -66,7 +62,7 @@ Survey.prototype = {
             var page = this.pages[i];
             page.survey = this;
 
-            var pageContainerDiv = $('<div></div>')
+            var pageContainerDiv = $('<div></div>');
             pageContainerDiv.addClass(page.containerClass());
             pageContainerDiv.append(page.elements());
             pageContainerDiv.hide();
@@ -92,23 +88,17 @@ Survey.prototype = {
     },
 
     addNavigationHandlers: function () {
-        $('body').on('click', '.next-button.active', $.proxy(this.nextStep, this));
-        $('body').on('click', '.back-button.active', $.proxy(this.previousStep, this));
+        $('body').on('click', '.next-button.active', $.proxy(this.nextStep, this))
+                 .on('click', '.back-button.active', $.proxy(this.previousStep, this));
     },
 
     removeNavigationEvents: function () {
-        $('body').off('click', '.next-button.active');
-        $('body').off('click', '.back-button.active');
+        $('body').off('click', '.next-button.active')
+                 .off('click', '.back-button.active');
     },
 
     isValidPageIndex: function (index) {
-        if (index < 0) {
-            return false;
-        }
-        if (index >= this.pages.length) {
-            return false;
-        }
-        return true;
+      return index >= 0 && index < this.pages.length;
     },
 
     shouldLeaveSurvey: function (index) {
@@ -126,15 +116,13 @@ Survey.prototype = {
     },
 
     goToPage: function (index) {
-        debugger;
         if (this.shouldLeaveSurvey(index)) {
             this.currentPage().nextClicked(this.proxy(function (){this.goToReport()} ));
-        } else if (index < 0) {
+        } else if (!this.isValidPageIndex(index)) {
             return;
         } else {
             this.currentPage().nextClicked(this.switchToPage(index));
         }
-
     },
 
     switchToPage: function (index, skipAnimations) {

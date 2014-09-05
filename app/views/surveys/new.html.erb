@@ -5,8 +5,8 @@
 </article>
 
 <article class="survey">
-  <section class="new_survey_form">
-    <%= form_for @survey do |f| %>
+  <section class="new-survey-form">
+    <%= form_for @survey do |survey_form| %>
       <% if @survey.errors.any? %>
         <div class="errors">
          <ul>
@@ -17,9 +17,55 @@
         </div>
       <% end %>
 
-      <%= f.label :title, "Survey title:" %>
-      <%= f.text_field :title %>
-      <%= f.submit "Create", class: "button" %>
+      <%= survey_form.label :title, "Survey title:" %>
+      <%= survey_form.text_field :title %>
+
+      <div class="questions">
+
+        <%= survey_form.fields_for :questions do |question_form| %>
+          <%= render "question_form", question_form: question_form %>
+        <% end %>
+
+        <div class="templates">
+          <%= survey_form.fields_for :questions do |question_form| %>
+            <%= render "question_form", question_form: question_form %>
+          <% end %>
+        </div>
+
+      </div>
+
+      <%= link_to "Add question", "#", class: "add-question" %>
+
+      <%= survey_form.submit "Create", class: "create-survey button" %>
     <% end %>
   </section>
 </article>
+
+
+
+
+<script>
+  $(".create-survey").click( function(){
+    $("form.new_survey .templates").remove();
+    cleanupEmptyQuestions();
+    return true;
+  });
+
+  $(".add-question").click( function(){
+    showQuestionForm();
+    return false;
+  });
+
+  function showQuestionForm() {
+    var questionsContainer = $('.questions');
+    var newQuestionTemplate = $('.templates .question-form');
+    var newForm = newQuestionTemplate.clone();
+    questionsContainer.append(newForm);
+  }
+
+  function cleanupEmptyQuestions() {
+    $("form.new_survey .templates").remove();
+
+    $('form.new_survey .questions :input[value=""]').attr('disabled', true);
+  }
+</script>

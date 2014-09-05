@@ -7,8 +7,14 @@ feature "user can create survey" do
     current_path.should == new_survey_path
   end
 
-  it "asks for the name of the new survey", js: true do
+  it "creates a new survey with name and question with choices", js: true do
     visit new_survey_path
     fill_in "Survey title:", with: "What would you do..."
+    fill_in "survey_questions_attributes_0_text", with: "...with a month off?"
+    fill_in "survey_questions_attributes_0_choices_attributes_0_text", with: "Travel galore"
+    fill_in "survey_questions_attributes_0_choices_attributes_1_text", with: "Staycation - play video games"
+    fill_in "survey_questions_attributes_0_choices_attributes_2_text", with: "Visit friends and family"
+    click_on "Create"
+    page.find(".surveys").should have_content("What would you do...")
   end
 end

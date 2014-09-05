@@ -21,6 +21,30 @@ describe SurveysController do
       post 'create', survey: {title: ""}
       response.should render_template('new')
     end
+
+    it "should create one new survey with one new question and three choices" do
+      expect {
+        expect {
+          expect {
+            post 'create', survey: {title: "Best Survey Ever", questions_attributes: [text: "Why?", choices_attributes: [{text: "Just because"}, {text: "Why not?"}, {text: "For fun"}]]}
+          }.to change(Survey, :count).by(1)
+        }.to change(Question, :count).by(1)
+      }.to change(Choice, :count).by(3)
+    end
+
+    it "should only create a survey not a question nor choices" do
+      expect {
+        expect {
+          expect {
+            post 'create', survey: {title: "Best Survey Ever"}
+          }.to change(Survey, :count).by(1)
+        }.to change(Question, :count).by(0)
+      }.to change(Choice, :count).by(0)
+    end
+  end
+
+  describe 'new' do
+
   end
 
 end
